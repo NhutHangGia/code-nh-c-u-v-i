@@ -1,0 +1,242 @@
+#include <iostream>
+#include<stdio.h>
+#include<conio.h>
+#define Maxsize 100
+
+void NhapMang(int a[], int& n);
+void XuatMang(int a[], int n);
+void XuatChan(int a[], int n);
+int TimMin(int a[], int n);
+int KTCP(int x);
+int XuatCPDau(int a[], int n);
+void TimAB(int a[], int n);
+void LietKeGT(int a[], int n);
+int KT5C(int n);
+void Tong5C(int a[], int n);
+int KTDoiXung(int a[], int n);
+void SXTangDan(int a[], int n);
+
+void main()
+{
+    int a[Maxsize], n, i;
+    NhapMang(a, n);
+    XuatMang(a, n);
+
+    printf("\t\n cac gia tri chan: ");
+    XuatChan(a, n);
+
+    printf("\t\n gia tri nho nhat trong mang: %d", TimMin(a, n));
+
+    if (XuatCPDau(a,n) == -1)
+        printf("\n\t khong co so chinh phuong ");
+    else
+        printf("\n\t so chinh phuong dau: %d", XuatCPDau(a, n));
+
+    TimAB(a, n);
+
+    LietKeGT(a, n);
+
+    printf("\n\t tong hang chuc: ");
+    Tong5C(a, n);
+
+    if (KTDoiXung(a, n) == 1)
+        printf("\n\t mang doi xung");
+    else
+        printf("\n\t mang khong doi xung");
+
+    SXTangDan(a, n);
+    _getch();
+}
+
+void NhapMang(int a[], int& n)
+{
+    int i;
+    printf("\n\t nhap so phan tu: ");
+    scanf_s("%d", &n);
+    for (i = 0; i < n; i++)
+    {
+        printf("\n\t a[%d]= ", i);
+        scanf_s("%d", &a[i]);
+    }
+}
+
+void XuatMang(int a[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("\n\t a[%d]= ", i);
+        printf("\t %d ", a[i]);
+    }
+}
+
+void XuatChan(int a[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] % 2 == 0)
+        {
+            printf("\n\t a[%d]= ", i);
+            printf("\t %d ", a[i]);
+        }
+    }
+}
+
+int TimMin(int a[], int n)
+{
+    int Min = a[0];
+    for (int i = 0; i < n; i++)
+    {
+        if (Min > a[i])
+            Min = a[i];
+    }return Min;
+}
+
+int KTCP(int x)
+{
+    for (int i = 1; i * i <= x; i++)
+        if (i * i == x)
+            return 1;
+        return 0;
+}
+
+int XuatCPDau(int a[],int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (KTCP(a[i]) == 1)
+        {
+            return a[i];
+            break;
+        }
+    }
+            return -1;
+}
+
+void TimAB(int a[], int n)
+{
+    int Min = a[0];
+    for (int i = 0; i < n; i++)
+    {
+        if (Min > a[i])
+            Min = a[i];
+    }
+    int Max = a[0];
+    for (int i = 0; i < n; i++)
+    {
+        if (Max < a[i])
+            Max = a[i];
+    }
+    printf("\n\t cac gia tri thuoc doan [%d,%d]", Min, Max);
+}
+
+void LietKeGT(int a[], int n)
+{
+    int x, y;
+    printf("\n\t x va y: ");
+    scanf_s("%d%d", &x, &y);
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] > x && a[i] < y)
+            printf("\t %d", a[i]);
+    }
+}
+
+int KT5C(int n)
+{
+    n = n / 10;
+    int HangChuc = n % 10;
+    if (HangChuc == 5)
+        return 1;
+    return 0;
+}
+
+void Tong5C(int a[], int n)
+{
+    int THangChuc=0;
+    for (int i = 0; i < n; i++)
+    {
+        if(KT5C(a[i]) == 1)
+           THangChuc += a[i];
+    }
+    printf("\n\t Tong=: %d ", THangChuc);
+}
+
+int KTDoiXung(int a[], int n)
+{
+    int i, j;
+    for (i = 0; i < n; i++)
+    {
+        for (j = n - 1; j > 0; j--)
+        {
+            if (a[i] != a[j])
+                return 0;
+        }
+    }
+    return 1;
+}
+
+void SXTangDan(int a[], int n)
+{
+    printf("\n\t mang sau sap xep: ");
+    int temp;
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[i] > a[j])
+            {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        printf("%5d", a[i]);
+    }
+}
+
+void SXTangDan(int a[], int n)
+{
+    printf("\n\t mang sau sap xep: ");
+    int temp;
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[i] > a[j])
+            {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        printf("%5d", a[i]);
+    }
+}
+
+void SXTangDan(int a[], int n)
+{
+    printf("\n\t mang sau sap xep: ");
+    int temp;
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[i] > a[j])
+            {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        printf("%5d", a[i]);
+    }
+}
